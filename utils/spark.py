@@ -23,6 +23,7 @@ class SparkSessionSingleton:
             session = ps.SparkSession.builder \
                 .appName(app_name)
             session.config('spark.driver.memory', "16G")
+            session.config('spark.driver.maxResultSize', '2G')
             session.config('spark.executor.memory', '2G')
             if params_func:
                 params_func(session)
