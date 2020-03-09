@@ -22,6 +22,8 @@ class SparkSessionSingleton:
         if app_name not in cls.SESSIONS:
             session = ps.SparkSession.builder \
                 .appName(app_name)
+            session.config('spark.driver.memory', "16G")
+            session.config('spark.executor.memory', '2G')
             if params_func:
                 params_func(session)
             session = session.getOrCreate()
